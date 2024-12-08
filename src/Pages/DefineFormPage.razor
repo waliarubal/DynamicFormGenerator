@@ -1,0 +1,21 @@
+﻿@page "/define-form"
+@inject NavigationManager NavigationManager
+@inject ISnackbar SnackbarService
+@inject ISharedService StateService
+
+<PageTitle>Define Form</PageTitle>
+<MudText Typo="Typo.h4" Class="my-2">
+    <MudIcon Icon="fas fa-code" />
+    Define Form
+</MudText>
+
+<MudText Typo="Typo.body1" Class="mb-2">
+    This is the first step in which you define the form configuration as JSON text. 
+    Type form configuration in JSON format below and click on 'Present Form' button.
+</MudText>
+<MudTextField Class="mb-2" T="string" Label="Form Configuration JSON" Typo="Typo.input" @bind-Value="Json" Lines="14" MaxLines="14" />
+<MudButton Class="mb-2" Variant="Variant.Filled" EndIcon="fas fa-desktop" Color="Color.Primary" OnClick="PresentForm">Present Form</MudButton>
+@if(!string.IsNullOrEmpty(Json)) {
+    <CodeBlock Code="@Json" Language="@CodeLanguages.Json" EnableLineNumbers="true" />
+}
+

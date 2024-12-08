@@ -11,11 +11,10 @@
             Icon="@Icons.Material.Filled.Menu" 
             Color="Color.Inherit" 
             Edge="Edge.Start" 
-            OnClick="@((e) => IsDrawerOpen = !IsDrawerOpen)" />
-        Dynamic Form Generator
+            OnClick="ToggleDrawer" />
     </MudAppBar>
     <MudDrawer @bind-Open="@IsDrawerOpen">
-        <AppNavMenu />
+        <Sidebar />
     </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Medium">
@@ -23,6 +22,3 @@
         </MudContainer>
     </MudMainContent>
 </MudLayout>
-@code {
-    bool IsDrawerOpen { get; set; }
-}

@@ -1,0 +1,81 @@
+﻿@page "/introduction"
+@inject NavigationManager NavigationManager
+
+<PageTitle>Dashboard</PageTitle>
+<MudText Typo="Typo.h4" Class="my-2">
+    <MudIcon Icon="fas fa-info" />
+    Introduction
+</MudText>
+
+<MudText Typo="Typo.body1" Class="mb-2">
+    This is an application which demonstrates generation of dynamic forms in Blazor WebAssembly 
+    using a configuration and then collection of submitted form data by the user. Application's 
+    sidebar menu can be toggled by clicking the hamburger icon on top left.
+</MudText>
+
+<MudText Typo="Typo.body1" Class="mb-4">
+    For the purpose of simplicity, we will be allowing user to define a dynamic form by providing
+    its configuration in JSON format and the data submitted by the user will also be collected as
+    a JSON object.
+</MudText>
+
+<MudText Typo="Typo.body1" Class="mb-2">
+    The whole process is divided in below mentioned three steps.
+</MudText>
+
+<MudCard Class="mb-4">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Step 1</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">Define the form configuration as JSON.</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton 
+            Variant="Variant.Text" 
+            Color="Color.Primary" 
+            StartIcon="fas fa-code" 
+            onclick="Step1">Define</MudButton>
+    </MudCardActions>
+</MudCard>
+
+<MudCard Class="mb-4">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Step 2</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">
+            Present Form (also known as render form) based on the form configuration provided in step 1. 
+            Allow user to submit data after validating it.
+        </MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton 
+            Variant="Variant.Text" 
+            Color="Color.Primary" 
+            StartIcon="fas fa-desktop" 
+            OnClick="Step2">Present</MudButton>
+    </MudCardActions>
+</MudCard>
+
+<MudCard Class="mb-4">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Step 3</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">View gathered form data submitted by user in step 2 as JSON.</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton 
+            Variant="Variant.Text" 
+            Color="Color.Primary" 
+            StartIcon="fas fa-keyboard" 
+            OnClick="Step3">Gathered Data</MudButton>
+    </MudCardActions>
+</MudCard>
