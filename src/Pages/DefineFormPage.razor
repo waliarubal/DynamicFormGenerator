@@ -1,7 +1,4 @@
 ﻿@page "/define-form"
-@inject NavigationManager NavigationManager
-@inject ISnackbar SnackbarService
-@inject ISharedService StateService
 
 <PageTitle>Define Form</PageTitle>
 <MudText Typo="Typo.h4" Class="my-2">
@@ -11,11 +8,31 @@
 
 <MudText Typo="Typo.body1" Class="mb-2">
     This is the first step in which you define the form configuration as JSON text. 
-    Type form configuration in JSON format below and click on 'Present Form' button.
+    For your convenience befow is form designer which will allow you to define form fields by clicking on 'Add Field' button.
+    Click on 'Save' button to save the design or 'Generate Sample' button to load a predefined sample form design.
+    When you are done with defining the fields, click on 'Present' button.
 </MudText>
-<MudTextField Class="mb-2" T="string" Label="Form Configuration JSON" Typo="Typo.input" @bind-Value="Json" Lines="14" MaxLines="14" />
-<MudButton Class="mb-2" Variant="Variant.Filled" EndIcon="fas fa-desktop" Color="Color.Primary" OnClick="PresentForm">Present Form</MudButton>
+
+<MudText Typo="Typo.subtitle1" Class="my-2" Color="Color.Primary">Form Designer</MudText>
+<MudTextField Class="my-2" @bind-Value="Form.Title" Label="Form Title" Required="true" RequiredError="Form title is required." />
+
+<MudButton Class="m-2" Variant="Variant.Filled" StartIcon="fas fa-plus" Color="Color.Secondary" OnClick="AddField">Add Field</MudButton>
+<MudButton Class="m-2" Variant="Variant.Filled" StartIcon="fas fa-broom" Color="Color.Secondary" OnClick="ClearDesign">Clear</MudButton>
+<MudButton Class="m-2" Variant="Variant.Filled" StartIcon="fas fa-save" Color="Color.Secondary" OnClick="(e) => SaveDesign()">Save</MudButton>
+<MudButton Class="m-2" Variant="Variant.Filled" StartIcon="fas fa-magic" Color="Color.Secondary" OnClick="GenerateSampleForm">Generate Sample</MudButton>
+<MudButton Class="m-2" Variant="Variant.Filled" EndIcon="fas fa-desktop" Color="Color.Primary" OnClick="PresentForm">Present</MudButton>
+
+<MudGrid Class="my-2">
+    @foreach (var field in Form.Fields)
+    {
+        <MudItem xs="12" sm="6">
+            <FormField Field="field" OnDeleted="DeleteField" />
+        </MudItem>
+    }
+</MudGrid>
+
 @if(!string.IsNullOrEmpty(Json)) {
-    <CodeBlock Code="@Json" Language="@CodeLanguages.Json" EnableLineNumbers="true" />
+    <MudText Typo="Typo.subtitle1" Class="my-2" Color="Color.Primary">Form Configuration JSON</MudText>
+    <MudText Class="my-2" Color="Color.Secondary">@Json</MudText>
 }
 

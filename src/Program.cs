@@ -1,4 +1,3 @@
-using Brism;
 using DynamicFormGenerator;
 using DynamicFormGenerator.Services;
 using Microsoft.AspNetCore.Components.Web;
@@ -10,11 +9,9 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 var services = builder.Services;
-services
-    .AddMudServices()
-    .AddBrism();
-services.AddSingleton<ISharedService, SharedService>();
+services.AddMudServices();
 services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+services.AddSingleton<IFormService, FormService>();
 
 await builder
     .Build()

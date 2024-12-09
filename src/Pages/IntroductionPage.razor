@@ -1,5 +1,4 @@
 ﻿@page "/introduction"
-@inject NavigationManager NavigationManager
 
 <PageTitle>Dashboard</PageTitle>
 <MudText Typo="Typo.h4" Class="my-2">
@@ -30,13 +29,13 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        <MudText Typo="Typo.body2">Define the form configuration as JSON.</MudText>
+        <MudText Typo="Typo.body2">Define the form configuration as JSON. We have a friendly form designer which allows you to define form fields visually so that you don't make errors while typying in JSON.</MudText>
     </MudCardContent>
     <MudCardActions>
         <MudButton 
-            Variant="Variant.Text" 
+            Variant="Variant.Text"
             Color="Color.Primary" 
-            StartIcon="fas fa-code" 
+            EndIcon="fas fa-code" 
             onclick="Step1">Define</MudButton>
     </MudCardActions>
 </MudCard>
@@ -55,9 +54,9 @@
     </MudCardContent>
     <MudCardActions>
         <MudButton 
-            Variant="Variant.Text" 
+            Variant="Variant.Text"
             Color="Color.Primary" 
-            StartIcon="fas fa-desktop" 
+            EndIcon="fas fa-desktop" 
             OnClick="Step2">Present</MudButton>
     </MudCardActions>
 </MudCard>
@@ -69,13 +68,13 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        <MudText Typo="Typo.body2">View gathered form data submitted by user in step 2 as JSON.</MudText>
+        <MudText Typo="Typo.body2">View gathered form data submitted by the user in step 2 as JSON.</MudText>
     </MudCardContent>
     <MudCardActions>
         <MudButton 
-            Variant="Variant.Text" 
-            Color="Color.Primary" 
-            StartIcon="fas fa-keyboard" 
-            OnClick="Step3">Gathered Data</MudButton>
+            Variant="Variant.Text"
+            Color="Color.Primary"
+            EndIcon="fas fa-keyboard"
+            OnClick="Step3">View Gathered Data</MudButton>
     </MudCardActions>
 </MudCard>

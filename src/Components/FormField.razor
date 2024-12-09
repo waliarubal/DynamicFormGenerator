@@ -1,0 +1,38 @@
+﻿
+<MudCard>
+    <MudCardContent>
+        <MudSelect @bind-Value="Field.FieldType" Label="Type" Required="true" RequiredError="Field type is required.">
+            @foreach(var fieldType in FieldTypes)
+            {
+                <MudSelectItem Value="fieldType">@fieldType</MudSelectItem>
+            }
+        </MudSelect>
+        <MudTextField @bind-Value="Field.Label" Label="Label" Required="true" RequiredError="Field label is required." />
+        <MudSwitch @bind-Value="Field.IsRequired" Label="Is this a mandatory field?" />
+        @if(Field.FieldType == FormFieldType.Number)
+        {
+            <MudNumericField @bind-Value="Field.Min" Label="Minimum Value" />
+            <MudNumericField @bind-Value="Field.Max" Label="Maximum Value" />
+        }
+        @if (Field.FieldType == FormFieldType.Text)
+        {
+            <MudNumericField @bind-Value="Field.MinLength" Label="Minimum Length" />
+            <MudNumericField @bind-Value="Field.MaxLength" Label="Maximum Length" />
+        }
+        @if(Field.FieldType == FormFieldType.Dropdown)
+        {
+            <MudTextField @bind-Value="Value" Label="Dropdown List Item" />
+            <MudIconButton Color="Color.Primary" Icon="fas fa-plus" OnClick="AddItem" />
+            
+            <MudList T="string">
+                @foreach(var value in Field.Values)
+                {
+                    <MudListItem Text="@value" Icon="fas fa-arrow-right" IconSize="Size.Small" />
+                }
+            </MudList>
+        }
+    </MudCardContent>
+    <MudCardActions>
+        <MudIconButton Color="Color.Error" Icon="fas fa-trash" OnClick="RaiseOnDeleted"/>
+    </MudCardActions>
+</MudCard>
