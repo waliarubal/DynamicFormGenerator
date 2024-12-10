@@ -29,6 +29,7 @@ The application sidebar.
 ## Assumptions
 * Numeric fields are always integer as other number types are not dealt with.
 * In dropdown field type, only string data is used.
+* For dropdown field items in the form designer, users can only add them. Removing field items functionality is not implemented.
 
 ## Project Execution
 Clone the project and open 'src' directory from which open the solution 'DynamicFormGenerator.sln' in Visual Studio 2022 and hit the run button (hilighted below). Browser will automatically open when the project is running.
