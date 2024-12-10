@@ -1,12 +1,12 @@
 ﻿namespace DynamicFormGenerator.Models;
 
-public class FormRecord
+public class DynamicForm
 {
     #region properties
 
     public string Title { get; set; } = string.Empty;
 
-    public IList<FieldRecord> Fields { get; set; } = [];
+    public IList<DynamicField> Fields { get; set; } = [];
 
     #endregion
 

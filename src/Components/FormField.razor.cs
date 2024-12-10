@@ -18,10 +18,10 @@ public partial class FormField
     string Value { get; set; } = string.Empty;
 
     [Parameter]
-    public EventCallback<FieldRecord> OnDeleted { get; set; }
+    public EventCallback<DynamicField> OnDeleted { get; set; }
 
     [Parameter]
-    public FieldRecord Field { get; set; }
+    public DynamicField Field { get; set; }
 
     #endregion
 

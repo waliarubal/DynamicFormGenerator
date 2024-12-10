@@ -1,4 +1,5 @@
 ﻿using DynamicFormGenerator.Models;
+using System.Dynamic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -9,6 +10,7 @@ public class FormService : IFormService
     readonly JsonSerializerOptions _jsonOption;
 
     string _formJson;
+    string _formDataJson;
 
     public FormService()
     {
@@ -23,40 +25,40 @@ public class FormService : IFormService
         };
     }
 
-    public FormRecord GenerateSampleForm()
+    public DynamicForm GenerateSampleForm()
     {
         return new()
         {
             Title = "Sample Form",
             Fields =
             [
-                new FieldRecord
+                new DynamicField
                 {
                     FieldType = FormFieldType.Text,
                     Label = "Name",
                     IsRequired = true,
                 },
-                new FieldRecord
+                new DynamicField
                 {
                     FieldType = FormFieldType.Email,
                     Label = "Email",
                     IsRequired = true,
                 },
-                new FieldRecord
+                new DynamicField
                 {
                     FieldType = FormFieldType.Number,
                     Label = "Age",
                     Min = 18,
                     Max = 100
                 },
-                new FieldRecord
+                new DynamicField
                 {
                     FieldType = FormFieldType.Dropdown,
                     Label = "Industry",
                     Values = ["Tech", "Production", "Health"],
                     IsRequired = true,
                 },
-                new FieldRecord
+                new DynamicField
                 {
                     FieldType = FormFieldType.Checkbox,
                     Label = "Subscribe to Newsletter",
@@ -66,7 +68,7 @@ public class FormService : IFormService
         };
     }
 
-    public string SaveDesign(FormRecord form)
+    public string SaveDesign(DynamicForm form)
     {
         var error = form.Validate();
         if (string.IsNullOrEmpty(error))
@@ -75,39 +77,26 @@ public class FormService : IFormService
         return error;
     }
 
-    public FormRecord GetDesign()
+    public DynamicForm GetDesign()
     {
         if (string.IsNullOrEmpty(_formJson))
             return new();
 
-        return JsonSerializer.Deserialize<FormRecord>(_formJson);
+        return JsonSerializer.Deserialize<DynamicForm>(_formJson, _jsonOption);
     }
 
     public string GetDesignJson()
     {
         return _formJson;
     }
-   
 
-    //public string SetFormJson(string json)
-    //{
-    //    if (string.IsNullOrEmpty(json))
-    //        return "Form JSON configuration not entered.";
+    public void SaveData(ExpandoObject data)
+    {
+        _formDataJson = JsonSerializer.Serialize(data, _jsonOption);
+    }
 
-    //    try
-    //    {
-    //        _configuration = JsonSerializer.Deserialize<FormConfiguration>(json, _jsonOption);
-    //    }
-    //    catch (JsonException)
-    //    {
-    //        return "Please check entered form JSON configuration.";
-    //    }
-
-    //    return null;
-    //}
-
-    //public string GetFormJson()
-    //{
-    //    return JsonSerializer.Serialize(_configuration, _jsonOption) ?? string.Empty;
-    //}
+    public string GetDataJson()
+    {
+        return _formDataJson;
+    }
 }

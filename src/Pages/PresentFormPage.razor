@@ -5,3 +5,18 @@
     <MudIcon Icon="fas fa-desktop" />
     Present Form
 </MudText>
+
+
+<MudText Typo="Typo.body1" Class="mb-2">
+    This is the second step where you can see dynamically generated form below. 
+    Please fill in the form and press 'Save' button to go to final step 3 and view gathered data in JSON format.
+</MudText>
+
+<MudText Typo="Typo.subtitle1" Class="my-2" Color="Color.Primary">@Form.Title</MudText>
+<MudForm Spacing="2">
+    @foreach(var field in Form.Fields)
+    {
+        <FormFieldDynamic Field="field" @ref="FieldRef"/>
+    }
+</MudForm>
+<MudButton Class="m-2" Variant="Variant.Filled" EndIcon="fas fa-save" Color="Color.Primary" OnClick="Save">Save</MudButton>

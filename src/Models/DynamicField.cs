@@ -11,7 +11,7 @@ public enum FormFieldType
     Checkbox
 }
 
-public class FieldRecord
+public class DynamicField
 {
     #region properties
 

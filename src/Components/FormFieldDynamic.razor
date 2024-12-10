@@ -1,0 +1,26 @@
+﻿@switch(Field.FieldType){
+    @case FormFieldType.Text:
+        <MudTextField @bind-Value="Value" Placeholder="@Placeholder" Label="@Field.Label" Error="@IsHavingError" ErrorText="@ErrorText" />
+        break;
+
+    @case FormFieldType.Email:
+        <MudTextField @bind-Value="Value" Placeholder="@Placeholder" Label="@Field.Label" Error="@IsHavingError" ErrorText="@ErrorText" />
+        break;
+
+    @case FormFieldType.Number:
+        <MudNumericField @bind-Value="ValueInt" Placeholder="@Placeholder" Min="@(Field.Min ?? 0)" Max="@(Field.Max ?? 0)" Label="@Field.Label" Error="@IsHavingError" ErrorText="@ErrorText" />
+        break;
+
+    @case FormFieldType.Dropdown:
+        <MudSelect @bind-Value="Value" Label="@Field.Label" Placeholder="@Placeholder" Error="@IsHavingError" ErrorText="@ErrorText">
+            @foreach(var value in Field.Values)
+            {
+                <MudSelectItem Value="value.ToString()">@value</MudSelectItem>
+            }
+        </MudSelect>
+        break;
+
+    @case FormFieldType.Checkbox:
+        <MudSwitch @bind-Value="ValueBool" Label="@Field.Label" Error="@IsHavingError" ErrorText="@ErrorText"/>
+        break;
+}

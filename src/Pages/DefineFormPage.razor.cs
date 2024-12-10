@@ -20,13 +20,14 @@ public partial class DefineFormPage
 
     string Json { get; set; } = string.Empty;
 
-    public FormRecord Form { get; set; } = new();
+    public DynamicForm Form { get; set; }
 
     #endregion
 
     protected override void OnInitialized()
     {
         Form = FormService.GetDesign();
+        Json = FormService.GetDesignJson();
     }
 
     void GenerateSampleForm()
@@ -40,7 +41,7 @@ public partial class DefineFormPage
         Form.Fields.Add(new());
     }
 
-    void DeleteField(FieldRecord record)
+    void DeleteField(DynamicField record)
     {
         Form.Fields.Remove(record);
     }

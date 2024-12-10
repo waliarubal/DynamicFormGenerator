@@ -1,8 +1,12 @@
 ﻿@page "/gathered-form-data"
 
 <PageTitle>Gathered Form Data</PageTitle>
-<h3>Gathered Form Data</h3>
+<MudText Typo="Typo.h4" Class="my-2">
+    <MudIcon Icon="fas fa-keyboard" />
+    Gathered Form Data
+</MudText>
 
-@code {
-
-}
+<MudText Typo="Typo.body1" Class="mb-2">
+    This is the final step, below you can see data collected from step 2 in JSON format.
+</MudText>
+<MudText Class="my-2" Color="Color.Secondary">@DataJson</MudText>
